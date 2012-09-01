@@ -1,12 +1,12 @@
-class Ratings < ActiveRecord::Base
+class Rating
 
 def self.get_all
-	list = Array.new
+	#list = Array.new
 	i = 0
-	ServiceProviders.each do |service_provider| 
+	ServicePartner.each do |service_provider| 
 		list[i] =	getAvgRating(service_provider)
-		i++
-		end
+		#i++
+	end
 	list
 end
 
@@ -42,7 +42,7 @@ def getRating(ratings)
 		ratings.each do |rating|
 			#r += rating * (month_weight[i] + taks_weight[i])
 			r += rating			
-			i++
+			i = i + 1
 		end
 		#avg = r / (sum (month_weight) + sum (task_weight))		
 		avg = r / ratings.size	
