@@ -13,9 +13,13 @@ end
 
 
 def self.getAvgRating(service_provider)
-	a = 0.5
-	b = 0.5	
-	((a * getClientRating(service_provider)) + (b * getSpotCheckerRating(service_provider))) / (a+b)
+	if (service_provider.employments.count != 0 )
+		a = 0.5
+		b = 0.5	
+		((a * getClientRating(service_provider)) + (b * getSpotCheckerRating(service_provider))) / (a+b)
+	else
+		nil
+	end
 end
 
 # ------------------------
@@ -24,19 +28,24 @@ private
 def self.getSpotCheckerRating(service_provider)
 		ratings = Array.new
 		service_provider.employments.each do |employment|
-			ratings << employment.rating_spot_checker
+			#ratings << employment.rating_spot_checker
+			ratings << 1+rand(4)
 		end
 		getRating(ratings)
+
 end
 
 
 
 def self.getClientRating(service_provider)
+		puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&    " + service_provider.employments.count.to_s
 		ratings = Array.new
-		service_provider.employments.each do |employment|
-			ratings << employment.job.rating_client
+		if (service_provider.employments)
+			service_provider.employments.each do |employment|
+				ratings << employment.job.rating_client
+			end
+			getRating(ratings)
 		end
-		getRating(ratings)
 end
 
 
@@ -51,7 +60,11 @@ def self.getRating(ratings)
 			i = i + 1
 		end
 		#avg = r / (sum (month_weight) + sum (task_weight))		
-		avg = r / ratings.size	
+		if (ratings.count != 0)
+			avg = r / ratings.count	
+		else
+			0
+		end
 end
 
 
