@@ -1,0 +1,21 @@
+<h1>Listing service_partners</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @service_partners.each do |service_partner| %>
+  <tr>
+    <td><%= link_to 'Show', service_partner %></td>
+    <td><%= link_to 'Edit', edit_service_partner_path(service_partner) %></td>
+    <td><%= link_to 'Destroy', service_partner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Service partner', new_service_partner_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Rating servicepartner:</b>
+  <%= @employment.rating_servicepartner %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%= @employment.job %>
+</p>
+
+<p>
+  <b>Service partner:</b>
+  <%= @employment.service_partner_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_employment_path(@employment) %> |
+<%= link_to 'Back', employments_path %>
