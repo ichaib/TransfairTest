@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
   # GET /ratings
   # GET /ratings.json
   def index
-    @ratings = Rating.get_all
+    @ratings = Rating.all
 
     respond_to do |format|
       format.html # index.html.erb
