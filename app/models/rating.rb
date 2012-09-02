@@ -1,9 +1,6 @@
 class Rating
 require 'linearregression.rb'
 
-def initialize
-	@log = Logger.new("/home/ichaib/transfair.log")	
-end
 
 def all
 	list = Array.new
