@@ -9,6 +9,8 @@ class LinearRegression
 
   # Pass in an array of values to get the regression on
   def initialize y_values
+    @log = Logger.new("/home/ichaib/transfair.log") 
+    @log.debug "init"
     @y_values = y_values
     @size = @y_values.size
     @x_values = (1..@size).to_a
@@ -41,7 +43,8 @@ class LinearRegression
   # from y = mx + b, or
   # y = slope * x + intercept
   def predict( x ) 
-    y = @slope * x + @intercept
+      @log.debug "Y  :    " + y.to_s + "-- Slope :   " + @slope.to_s + "-- Intercept :   " + @interecept.to_s  
+      y = @slope * x + @intercept
   end 
 
   # Get the "next" value if the sequence

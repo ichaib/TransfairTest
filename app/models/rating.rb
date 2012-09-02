@@ -1,6 +1,9 @@
 class Rating
 require 'linearregression.rb'
 
+def initialize
+	@log = Logger.new("/home/ichaib/transfair.log")	
+end
 
 def all
 	list = Array.new
@@ -62,30 +65,18 @@ def getRatingSimple(ratings)
 			0
 		end
 end
-
-
-def predict(x)
-	if (@reg)
-		y = @reg.predict(x)		
-	else
-		y = 0
-	end
-
-	@log.debug "--------" + y.to_s
-end
-
-@log = Logger.new("/home/ichaib/transfair.log")	
 		
 def getRating(ratings)
-		weights = Array.new([1,0.95,0.9,0.85,0.8,0.75,0.7,0.65,0.6,0.55,0.5,0.4,0.3,0.2,0.1])
-		reg = LinearRegression.new(weights)
 		
 		ratings = ratings.sort
 		i = 0
 		r = 0
+		sum_weight = 0
+		
+		weights = Array.new([1,0.95,0.9,0.85,0.8,0.75,0.7,0.65,0.6,0.55,0.5,0.4,0.3,0.2,0.1])
+		reg = LinearRegression.new(weights)
 		ratings.each do |rating|
 			weight = reg.predict(i)
-			@log.debug "--------" + weight.to_s 
 			r += rating * weight
 			sum_weight += weight
 			i = i + 1
